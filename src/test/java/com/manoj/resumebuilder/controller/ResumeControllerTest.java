@@ -38,8 +38,16 @@ class ResumeControllerTest {
         request.setSkills("Java, Spring Boot");
         request.setExperience("4 Years");
 
-        ResumeResponse response = new ResumeResponse(
-
+        ResumeResponse response = new ResumeResponse();
+        response.setId(1L);
+        response.setName("Manoj Panda");
+        response.setEmail("manoj@example.com");
+        response.setPhone("9876543210");
+        response.setEducation("B.Tech");
+        response.setSkills("Java, Spring Boot");
+        response.setExperience("4 Years");
+        response.setProjects("AI Resume Builder");
+        response.setGeneratedResume("Resume Generated Successfully");
 
         when(resumeService.saveResume(any())).thenReturn(response);
 
