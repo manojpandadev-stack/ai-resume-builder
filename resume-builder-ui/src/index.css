@@ -1,0 +1,50 @@
+body{
+    background: linear-gradient(135deg,#667eea,#764ba2);
+    min-height:100vh;
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.container{
+    max-width:1100px;
+}
+
+.card{
+    border:none;
+    border-radius:18px;
+    box-shadow:0 10px 25px rgba(0,0,0,.15);
+}
+
+.card-header{
+    font-size:20px;
+    font-weight:bold;
+}
+
+textarea{
+    resize:none;
+}
+
+.btn{
+    border-radius:30px;
+    padding:10px 22px;
+    font-weight:bold;
+}
+
+.btn:hover{
+    transform:translateY(-2px);
+    transition:.3s;
+}
+
+pre{
+    white-space:pre-wrap;
+    word-wrap:break-word;
+    font-size:15px;
+}
+
+h1{
+    font-weight:bold;
+}
+
+.form-control{
+    border-radius:10px;
+}

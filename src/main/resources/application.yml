@@ -1,0 +1,22 @@
+spring:
+  profiles:
+    active: dev
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    management:
+      endpoints:
+        web:
+          exposure:
+            include: health,info,metrics,env
+
+      endpoint:
+        health:
+          show-details: always
+
+    info:
+      app:
+        name: AI Resume Builder
+        version: 1.0.0
+        developer: Manoj Panda

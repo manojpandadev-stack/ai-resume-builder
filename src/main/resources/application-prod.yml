@@ -1,0 +1,9 @@
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: false
+logging:
+  level:
+    com.manoj.resumebuilder: INFO
+    org.hibernate.SQL: WARN
