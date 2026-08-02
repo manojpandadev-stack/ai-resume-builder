@@ -66,7 +66,7 @@ mvn spring-boot:run
 Swagger UI
 
 ```
-http://localhost:8080/swagger-ui.html
+baseURL: "https://ai-resume-builder-production-c077.up.railway.app"
 ```
 
 ## Future Improvements

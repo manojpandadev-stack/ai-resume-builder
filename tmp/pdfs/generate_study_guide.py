@@ -302,7 +302,7 @@ const handleChange = (e) => {
         h2("Generating a resume"),
         code("""
 const response = await axios.post(
-  "http://localhost:8080/ai/generate",
+  baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
   form
 );
 setResume(response.data);
@@ -317,7 +317,7 @@ setResume(response.data);
         h2("Binary PDF workflow"),
         code("""
 const response = await axios.post(
-  "http://localhost:8080/pdf/download",
+  baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
   resume,
   { headers: { "Content-Type": "text/plain" }, responseType: "blob" }
 );
@@ -517,7 +517,7 @@ return ResponseEntity.ok()
         h1("7. CORS, validation, and error handling"),
         h2("CORS"),
         paragraph(
-            "React normally runs at http://localhost:3000 in development while Spring Boot runs at http://localhost:8080. The different ports make them different origins. @CrossOrigin on AIController and PdfController permits the React origin to call the API. CORS is a browser rule; it is not authentication."
+            "React normally runs at http://localhost:3000 in development while Spring Boot runs at baseURL: "https://ai-resume-builder-production-c077.up.railway.app". The different ports make them different origins. @CrossOrigin on AIController and PdfController permits the React origin to call the API. CORS is a browser rule; it is not authentication."
         ),
         paragraph(
             "In production, replace the local development origin with the exact deployed frontend domain. Do not use broad wildcard origins for sensitive authenticated applications."
