@@ -46,7 +46,7 @@ const [loading, setLoading] = useState(false);
 
     try {
     const response = await api.post(
-  "http://localhost:8080/api/ai/generate",
+  baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
   form
      );
 
@@ -64,7 +64,7 @@ const [loading, setLoading] = useState(false);
     setLoading(true);
     try {
       const response = await api.post(
-  "http://localhost:8080/api/ai/analyze",
+  baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
   {
     content: resume
   }
@@ -82,8 +82,7 @@ setAnalysis(response.data.content);
    const generateCoverLetter = async () => {
   try {
     const response = await api.post(
-      "http://localhost:8080/api/ai/cover-letter",
-      form
+      baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
     );
 
     setCoverLetter(response.data.content);
@@ -126,7 +125,7 @@ const saveResume = async () => {
      try {
       
       const response = await api.post(
-  "http://localhost:8080/pdf/download",
+  baseURL: "https://ai-resume-builder-production-c077.up.railway.app",
   {
     content: resume
   },
