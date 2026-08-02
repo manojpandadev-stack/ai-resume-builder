@@ -68,7 +68,12 @@ public class SecurityConfig {
                         .requestMatchers("/pdf/**").permitAll()
                         .requestMatchers("/api/resumes/**").permitAll()
 
-                        // Everything else requires login
+                        .requestMatchers(
+                                "/swagger-ui/**",
+                                "/swagger-ui.html",
+                                "/v3/api-docs/**",
+                                "/v3/api-docs"
+                        ).permitAll()
                         .anyRequest().authenticated()
                 )
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class);
