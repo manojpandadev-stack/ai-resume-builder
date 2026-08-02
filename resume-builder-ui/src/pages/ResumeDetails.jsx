@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import api from "../services/api";
 
@@ -8,11 +8,7 @@ function ResumeDetails() {
 
   const [resume, setResume] = useState(null);
 
-  useEffect(() => {
-    loadResume();
-  }, []);
-
-  const loadResume = async () => {
+  const loadResume = useCallback(async () => {
     try {
       const response = await api.get(`/api/resumes/${id}`);
       setResume(response.data);
@@ -20,7 +16,11 @@ function ResumeDetails() {
       console.error(error);
       alert("Failed to load resume");
     }
-  };
+  }, [id]);
+
+  useEffect(() => {
+    loadResume();
+  }, [loadResume]);
 
   if (!resume) {
     return <h3 className="text-center mt-5">Loading...</h3>;
