@@ -60,23 +60,13 @@ public class SecurityConfig {
                 .sessionManagement(session ->
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
-
-                        // Public APIs
+                        .requestMatchers("/", "/index.html").permitAll()
+                        .requestMatchers("/actuator/**").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
                         .requestMatchers("/auth/**").permitAll()
-
                         .requestMatchers("/api/ai/**").permitAll()
-
                         .requestMatchers("/pdf/**").permitAll()
-
                         .requestMatchers("/api/resumes/**").permitAll()
-
-                        // Swagger
-                        .requestMatchers(
-                                "/swagger-ui/**",
-                                "/swagger-ui.html",
-                                "/v3/api-docs/**"
-                        ).permitAll()
 
                         // Everything else requires login
                         .anyRequest().authenticated()
