@@ -47,6 +47,7 @@ public class AIServiceImpl implements AIService {
     public String generateResume(String prompt) {
         return executePrompt(prompt);
     }
+
     @Override
     public String generateCoverLetter(String prompt) {
         return executePrompt(prompt);
@@ -56,14 +57,14 @@ public class AIServiceImpl implements AIService {
     public String improveResume(String resumeText) {
 
         String prompt = """
-You are a Senior Resume Writer.
+                You are a Senior Resume Writer.
 
-Improve the following resume.
+                Improve the following resume.
 
-Resume:
+                Resume:
 
-%s
-""".formatted(resumeText);
+                %s
+                """.formatted(resumeText);
 
         return executePrompt(prompt);
     }
@@ -72,21 +73,21 @@ Resume:
     public String calculateATSScore(String resumeText) {
 
         String prompt = """
-You are an ATS Resume Analyzer.
+                You are an ATS Resume Analyzer.
 
-Analyze the following resume.
+                Analyze the following resume.
 
-Return:
+                Return:
 
-1. ATS Score
-2. Missing Skills
-3. Weak Points
-4. Suggestions
+                1. ATS Score
+                2. Missing Skills
+                3. Weak Points
+                4. Suggestions
 
-Resume:
+                Resume:
 
-%s
-""".formatted(resumeText);
+                %s
+                """.formatted(resumeText);
 
         return executePrompt(prompt);
     }
@@ -115,6 +116,9 @@ Resume:
                         try {
                             return supplier.get();
                         } catch (Throwable ex) {
+
+                            log.error("Groq API failed inside supplier", ex);
+
                             throw new AIProviderException(
                                     "AI provider request failed",
                                     ex
@@ -125,11 +129,12 @@ Resume:
 
         } catch (Exception ex) {
 
+            log.error("Groq API failed while executing request", ex);
+
             throw new AIProviderException(
                     "AI provider request failed",
                     ex
             );
-
         }
     }
 }

@@ -46,7 +46,7 @@ function ResumeBuilder() {
   const generateResume = async () => {
     setLoading(true);
     try {
-      const response = await api.post("/api/resumes/generate", form);
+      const response = await api.post("/api/ai/generate", form);
       setResume(response.data.content);
     } catch (error) {
       console.error(error);
@@ -63,7 +63,7 @@ function ResumeBuilder() {
     }
     setLoading(true);
     try {
-      const response = await api.post("/api/resumes/analyze", {
+      const response = await api.post("/api/ai/analyze", {
         content: resume,
       });
       setAnalysis(response.data.content);
@@ -82,7 +82,7 @@ function ResumeBuilder() {
     }
     setLoading(true);
     try {
-      const response = await api.post("/api/resumes/cover-letter", {
+      const response = await api.post("/api/ai/cover-letter", {
         content: resume,
         ...form,
       });
