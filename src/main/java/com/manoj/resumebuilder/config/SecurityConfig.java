@@ -34,10 +34,11 @@ public class SecurityConfig {
 
         CorsConfiguration configuration = new CorsConfiguration();
 
-        configuration.setAllowedOrigins(List.of(
-                "http://localhost:3000",
-                "http://localhost:3001"
-        ));
+      configuration.setAllowedOrigins(List.of(
+    "http://localhost:3000",
+    "http://localhost:3001",
+    "https://ai-resume-builder-2utx.vercel.app"
+));
 
         configuration.setAllowedMethods(List.of("*"));
         configuration.setAllowedHeaders(List.of("*"));
