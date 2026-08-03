@@ -1,7 +1,5 @@
 package com.manoj.resumebuilder.controller;
 
-
-
 import com.lowagie.text.DocumentException;
 import com.manoj.resumebuilder.dto.request.AiTextRequest;
 import com.manoj.resumebuilder.pdf.PdfService;
@@ -13,7 +11,10 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/pdf")
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {
+        "http://localhost:3000",
+        "https://ai-resume-builder-2utx.vercel.app"
+})
 public class PdfController {
 
     private final PdfService pdfService;
@@ -23,15 +24,37 @@ public class PdfController {
     }
 
     @PostMapping("/download")
-    public ResponseEntity<byte[]> downloadPdf(@Valid @RequestBody AiTextRequest request)
-            throws DocumentException {
+    public ResponseEntity<byte[]> downloadPdf(
+            @Valid @RequestBody AiTextRequest request) {
 
-        byte[] pdf = pdfService.generateResumePdf(request.getContent());
+        try {
 
-        return ResponseEntity.ok()
-                .header(HttpHeaders.CONTENT_DISPOSITION,
-                        "attachment; filename=resume.pdf")
-                .contentType(MediaType.APPLICATION_PDF)
-                .body(pdf);
+            if (request == null ||
+                    request.getContent() == null ||
+                    request.getContent().isBlank()) {
+
+                return ResponseEntity.badRequest().build();
+            }
+
+            byte[] pdf = pdfService.generateResumePdf(request.getContent());
+
+            return ResponseEntity.ok()
+                    .header(HttpHeaders.CONTENT_DISPOSITION,
+                            "attachment; filename=resume.pdf")
+                    .contentType(MediaType.APPLICATION_PDF)
+                    .body(pdf);
+
+        } catch (DocumentException e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity.internalServerError().build();
+
+        } catch (Exception e) {
+
+            e.printStackTrace();
+
+            return ResponseEntity.internalServerError().build();
+        }
     }
 }
