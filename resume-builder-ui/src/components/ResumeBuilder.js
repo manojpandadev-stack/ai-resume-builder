@@ -126,10 +126,12 @@ function ResumeBuilder() {
     setLoading(true);
     try {
       const response = await api.post(
-        "/api/resumes/download-pdf",
-        { content: resume },
-        { responseType: "blob" }
-      );
+    "/pdf/download",
+    { content: resume },
+    {
+        responseType: "blob",
+    }
+    );
 
       const url = window.URL.createObjectURL(response.data);
       const link = document.createElement("a");
